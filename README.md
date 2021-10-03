@@ -50,7 +50,7 @@ $ i686-w64-mingw32.static-qmake-qt5 \
 	BDB_LIB_PATH=$MXE_LIB_PATH \
 	MINIUPNPC_INCLUDE_PATH=$MXE_INCLUDE_PATH \
 	MINIUPNPC_LIB_PATH=$MXE_LIB_PATH \
-    QMAKE_LRELEASE=/build/mxe/usr/i686-w64-mingw32.static/qt/bin/lrelease shitcoin-qt.pro
+	QMAKE_LRELEASE=/build/mxe/usr/i686-w64-mingw32.static/qt/bin/lrelease shitcoin-qt.pro
 $ make -f Makefile.Release
 ```
 
