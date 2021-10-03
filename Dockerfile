@@ -1,5 +1,7 @@
 FROM pmarie/ubuntu-mxe:latest
 
+LABEL maintainer="Sven Skender (@sskender)"
+
 
 # Update miniupnp to v1.6
 WORKDIR /build
