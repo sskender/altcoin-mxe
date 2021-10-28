@@ -6,7 +6,7 @@ Docker image with MXE tools to build altcoin forks (boost, qt5, db4.8, miniupnpc
 Tools:
  - boost
  - qt5
- - Berkeley DB v4.8
+ - Berkeley DB v5.3
  - openssl v1.0
  - miniupnpc v1.6
 
