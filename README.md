@@ -1,5 +1,5 @@
 # altcoin-mxe
-Docker image with MXE tools to build altcoin forks (boost, qt5, db4.8, miniupnpc-1.6, openssl-1.0)
+Docker image with MXE tools to build altcoin forks (boost, qt5, db5.3, miniupnpc-1.6, openssl-1.0)
 
 ## What is inside?
 
