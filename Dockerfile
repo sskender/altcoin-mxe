@@ -1,4 +1,62 @@
-FROM ubuntu:16.04
+FROM ubuntu:16.04 AS ubuntu-base
+
+
+
+FROM ubuntu-base AS build-headless
+
+LABEL maintainer="Sven Skender (@sskender)"
+
+
+# Install dependencies
+RUN apt-get update -y
+
+RUN apt-get install \
+    apt-utils \
+    pkg-config \
+    -y
+
+RUN apt-get install \
+    automake \
+    bsdmainutils \
+    cmake \
+    curl \
+    libtool \
+    make \
+    python3 \
+    wget \
+    -y
+
+RUN apt-get install \
+    libboost-all-dev \
+    libminiupnpc-dev \
+    libqrencode-dev \
+    libssl-dev \
+    libzmq-dev \
+    -y
+
+RUN apt-get clean && \
+	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+
+# Build berkeleydb v5.3
+WORKDIR /build
+
+ENV BERKELEYDB_VERSION=db-5.3.28
+RUN wget "http://download.oracle.com/berkeley-db/${BERKELEYDB_VERSION}.tar.gz"
+RUN tar -xvzf ${BERKELEYDB_VERSION}.tar.gz
+
+WORKDIR /build/${BERKELEYDB_VERSION}/build_unix
+RUN ../dist/configure --with-static --enable-cxx --disable-shared --with-pic --prefix=/usr/local && \
+    make -j$(nproc) && \
+    make install
+
+WORKDIR /build
+RUN rm ${BERKELEYDB_VERSION}.tar.gz
+RUN rm -r ${BERKELEYDB_VERSION}
+
+
+
+FROM ubuntu-base AS build-mxe
 
 LABEL maintainer="Sven Skender (@sskender)"
 
