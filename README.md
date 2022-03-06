@@ -1,10 +1,10 @@
 # altcoin-mxe
-Docker image with MXE tools to build altcoin forks (boost, qt5, db5.3, miniupnpc-1.6, openssl-1.0)
+Docker image with MXE tools required to build altcoins (boost1.58, qt5, db5.3, miniupnpc-1.6, openssl-1.0)
 
 ## What is inside?
 
 Tools:
- - boost
+ - boost-dev v1.58
  - qt5
  - Berkeley DB v5.3
  - openssl v1.0
@@ -19,7 +19,7 @@ Env variables:
 
 Build it yourself:
 ```bash
-$ docker build --tag altcoin-mxe .
+$ docker build --tag altcoin-mxe --target build-mxe .
 ```
 
 Or pull already built image from DockerHub:
@@ -54,10 +54,42 @@ $ i686-w64-mingw32.static-qmake-qt5 \
 $ make -f Makefile.Release
 ```
 
+## Use for building a headless daemon
+
+Build or pull image:
+```bash
+$ docker build --tag altcoin-mxe:headless --target build-headless .
+$ # OR
+$ docker pull sskender/altcoin-mxe:headless
+```
+
+Run container:
+```bash
+$ docker run -it sskender/altcoin-mxe:headless bash
+```
+
+Clone your shitcoin and build it:
+```bash
+$ git clone https://github.com/shitdev/shitcoin
+$ cd shitcoin/src
+$ make -f makefile.unix
+```
+
+## Use as base image
+
+```Dockerfile
+FROM sskender/altcoin-mxe:latest as mybuild
+
+WORKDIR /build/shitcoin
+COPY . .
+
+RUN i686-w64-mingw32.static-qmake-qt5 ...
+```
+
 This will probably work. If not, have fun tweaking boost, miniupnpc, openssl versions, maybe use qt4 instead of qt5 for older altcoins or any other dependency.
 
 ## Is there a better way to do this?
 
-Probably
+Probably.
 
 # Big thanks to [pmarie](https://hub.docker.com/u/pmarie)!
