@@ -101,7 +101,7 @@ RUN apt-get install \
     -y
 
 WORKDIR /build
-ENV MXE_BRANCH_TAG=build-2021-04-22
+ENV MXE_BRANCH_TAG=build-2022-01-13
 RUN git clone --depth 1 --branch $MXE_BRANCH_TAG https://github.com/mxe/mxe.git
 
 
