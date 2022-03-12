@@ -112,6 +112,7 @@ RUN make MXE_TARGETS="i686-w64-mingw32.static" zlib
 RUN make MXE_TARGETS="i686-w64-mingw32.static" libpng
 RUN make MXE_TARGETS="i686-w64-mingw32.static" openssl
 RUN make MXE_TARGETS="i686-w64-mingw32.static" boost
+RUN make MXE_TARGETS="i686-w64-mingw32.static" libqrencode
 RUN make MXE_TARGETS="i686-w64-mingw32.static" qtbase
 RUN make MXE_TARGETS="i686-w64-mingw32.static" qttools
 RUN make MXE_TARGETS="i686-w64-mingw32.static" qttranslations
@@ -145,9 +146,6 @@ RUN CC=$MXE_PATH/usr/bin/i686-w64-mingw32.static-gcc \
 WORKDIR /build
 RUN rm db-5.3.28.tar.gz
 RUN rm -r db-5.3.28
-
-
-# Build qrcode
 
 
 # Build miniupnp v1.6
