@@ -1,14 +1,15 @@
 # altcoin-mxe
-Docker image with MXE tools required to build altcoins (boost1.58, qt5, db5.3, miniupnpc-1.6, openssl-1.0)
+Docker image with MXE tools required to build altcoins (boost1.58, qt5, db5.3, miniupnpc-1.6, libqrencode-4.0.2, openssl-1.0)
 
 ## What is inside?
 
 Tools:
  - boost-dev v1.58
  - qt5
- - Berkeley DB v5.3
+ - BerkeleyDB v5.3
  - openssl v1.0
  - miniupnpc v1.6
+ - libqrencode v4.0.2
 
 Env variables:
  - MXE_PATH
@@ -39,6 +40,7 @@ $ cd shitcoin
 $ i686-w64-mingw32.static-qmake-qt5 \
 	RELEASE=1 \
 	USE_UPNP=1 \
+	USE_QRCODE=1 \
 	USE_DBUS=1 \
 	BOOST_LIB_SUFFIX=-mt \
 	BOOST_THREAD_LIB_SUFFIX=_win32-mt \
@@ -50,6 +52,8 @@ $ i686-w64-mingw32.static-qmake-qt5 \
 	BDB_LIB_PATH=$MXE_LIB_PATH \
 	MINIUPNPC_INCLUDE_PATH=$MXE_INCLUDE_PATH \
 	MINIUPNPC_LIB_PATH=$MXE_LIB_PATH \
+	QRENCODE_INCLUDE_PATH=$MXE_INCLUDE_PATH/qrencode \
+	QRENCODE_LIB_PATH=$MXE_LIB_PATH \
 	QMAKE_LRELEASE=/build/mxe/usr/i686-w64-mingw32.static/qt/bin/lrelease shitcoin-qt.pro
 $ make -f Makefile.Release
 ```
