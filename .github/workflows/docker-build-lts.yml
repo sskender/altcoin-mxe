@@ -33,7 +33,7 @@ jobs:
           push: true
           target: build-headless
           tags: sskender/altcoin-mxe:headless-lts
-          file: Dockerfile
+          file: lts/Dockerfile
 
   build-mxe:
 
@@ -62,4 +62,4 @@ jobs:
           push: true
           target: build-mxe
           tags: sskender/altcoin-mxe:lts
-          file: Dockerfile
+          file: lts/Dockerfile
